@@ -16,10 +16,41 @@
             <body>
                 <call expression="moveAround()" expression-java="moveAround()" enable="true"/>
                 <call expression="eat()" expression-java="eat()" enable="true"/>
+                <if condition="isGameWon()" condition-java="isGameWon()" enable="true">
+                    <ifStatements>
+                        <call expression="transitionToGameWinWorld()" expression-java="transitionToGameWinWorld()" enable="true"/>
+                    </ifStatements>
+                </if>
+            </body>
+        </method>
+        <method access="public" type="boolean" type-java="boolean" name="isGameWon" enable="true">
+            <javadoc xml:space="preserve">If there is no more burgers left, we win</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <variable type="World" type-java="World" name="world" value="getWorld()" value-java="getWorld()" enable="true"/>
+                <if condition="world.getObjects(Burger.class).isEmpty()" condition-java="world.getObjects(Burger.class).isEmpty()" enable="true">
+                    <ifStatements>
+                        <return value="true" value-java="true" enable="true"/>
+                    </ifStatements>
+                    <else>
+                        <return value="false" value-java="false" enable="true"/>
+                    </else>
+                </if>
+            </body>
+        </method>
+        <method access="public" type="void" type-java="void" name="transitionToGameWinWorld" enable="true">
+            <javadoc xml:space="preserve">If we win transition to winning screen</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <variable type="World" type-java="World" name="gameWinWorld" value="new gameWinWorld()" value-java=" new gameWinWorld()" enable="true"/>
+                <call expression="Greenfoot.setWorld(gameWinWorld)" expression-java="Greenfoot.setWorld(gameWinWorld)" enable="true"/>
+                <call expression="Greenfoot.playSound(&quot;win.wav&quot;)" expression-java="Greenfoot.playSound(&quot;win.wav&quot;)" enable="true"/>
             </body>
         </method>
         <method access="public" type="void" type-java="void" name="moveAround" enable="true">
-            <javadoc xml:space="preserve"/>
+            <javadoc xml:space="preserve">This is a fonction to move the pig around</javadoc>
             <params/>
             <throws/>
             <body>
@@ -47,13 +78,17 @@
             </body>
         </method>
         <method access="public" type="void" type-java="void" name="eat" enable="true">
-            <javadoc xml:space="preserve"/>
+            <javadoc xml:space="preserve">This is a fonction to eat the burgers</javadoc>
             <params/>
             <throws/>
             <body>
-                <variable type="Actor" type-java="Actor" name="Pig" enable="true"/>
-                <if condition="" condition-java="" enable="true">
-                    <ifStatements/>
+                <variable type="Actor" type-java="Actor" name="burger" value="getOneIntersectingObject(Burger.class)" value-java="getOneIntersectingObject(Burger.class)" enable="true"/>
+                <if condition="burger!=null" condition-java="burger != null" enable="true">
+                    <ifStatements>
+                        <variable type="World" type-java="World" name="world" value="getWorld()" value-java="getWorld()" enable="true"/>
+                        <call expression="world.removeObject(burger)" expression-java="world.removeObject(burger)" enable="true"/>
+                        <call expression="Greenfoot.playSound(&quot;eating.wav&quot;)" expression-java="Greenfoot.playSound(&quot;eating.wav&quot;)" enable="true"/>
+                    </ifStatements>
                 </if>
             </body>
         </method>

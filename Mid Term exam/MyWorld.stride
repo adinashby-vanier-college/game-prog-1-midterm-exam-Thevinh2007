@@ -12,9 +12,57 @@
             <javadoc xml:space="preserve">Constructor for objects of class MyWorld.</javadoc>
             <params/>
             <throws/>
-            <delegate target="super" params="750,750,1" params-java="750, 750, 1"/>
-            <body/>
+            <delegate target="super" params="860,860,1" params-java="860, 860, 1"/>
+            <body>
+                <call expression="prepare()" expression-java="prepare()" enable="true"/>
+            </body>
         </constructor>
     </constructors>
-    <methods/>
+    <methods>
+        <method access="private" type="void" type-java="void" name="prepare" enable="true">
+            <javadoc xml:space="preserve">Prepare the world for the start of the program.
+That is: create the initial objects and add them to the world.</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <variable type="Pig" type-java="Pig" name="pig" value="new Pig()" value-java=" new Pig()" enable="true"/>
+                <call expression="addObject(pig,159,686)" expression-java="addObject(pig, 159, 686)" enable="true"/>
+                <variable type="Snake" type-java="Snake" name="snake" value="new Snake()" value-java=" new Snake()" enable="true"/>
+                <call expression="addObject(snake,575,198)" expression-java="addObject(snake, 575, 198)" enable="true"/>
+                <variable type="Burger" type-java="Burger" name="burger" value="new Burger()" value-java=" new Burger()" enable="true"/>
+                <call expression="addObject(burger,176,138)" expression-java="addObject(burger, 176, 138)" enable="true"/>
+                <variable type="Burger" type-java="Burger" name="burger2" value="new Burger()" value-java=" new Burger()" enable="true"/>
+                <call expression="addObject(burger2,681,14)" expression-java="addObject(burger2, 681, 14)" enable="true"/>
+                <variable type="Burger" type-java="Burger" name="burger3" value="new Burger()" value-java=" new Burger()" enable="true"/>
+                <call expression="addObject(burger3,237,494)" expression-java="addObject(burger3, 237, 494)" enable="true"/>
+                <call expression="burger2.setLocation(707,75)" expression-java="burger2.setLocation(707, 75)" enable="true"/>
+                <variable type="Burger" type-java="Burger" name="burger4" value="new Burger()" value-java=" new Burger()" enable="true"/>
+                <call expression="addObject(burger4,418,110)" expression-java="addObject(burger4, 418, 110)" enable="true"/>
+                <variable type="Burger" type-java="Burger" name="burger5" value="new Burger()" value-java=" new Burger()" enable="true"/>
+                <call expression="addObject(burger5,262,688)" expression-java="addObject(burger5, 262, 688)" enable="true"/>
+                <variable type="Burger" type-java="Burger" name="burger6" value="new Burger()" value-java=" new Burger()" enable="true"/>
+                <call expression="addObject(burger6,566,736)" expression-java="addObject(burger6, 566, 736)" enable="true"/>
+                <variable type="Burger" type-java="Burger" name="burger7" value="new Burger()" value-java=" new Burger()" enable="true"/>
+                <call expression="addObject(burger7,662,534)" expression-java="addObject(burger7, 662, 534)" enable="true"/>
+                <variable type="Burger" type-java="Burger" name="burger8" value="new Burger()" value-java=" new Burger()" enable="true"/>
+                <call expression="addObject(burger8,424,433)" expression-java="addObject(burger8, 424, 433)" enable="true"/>
+                <variable type="Burger" type-java="Burger" name="burger9" value="new Burger()" value-java=" new Burger()" enable="true"/>
+                <call expression="addObject(burger9,655,364)" expression-java="addObject(burger9, 655, 364)" enable="true"/>
+                <variable type="Burger" type-java="Burger" name="burger10" value="new Burger()" value-java=" new Burger()" enable="true"/>
+                <call expression="addObject(burger10,733,249)" expression-java="addObject(burger10, 733, 249)" enable="true"/>
+                <variable type="Burger" type-java="Burger" name="burger11" value="new Burger()" value-java=" new Burger()" enable="true"/>
+                <call expression="addObject(burger11,213,283)" expression-java="addObject(burger11, 213, 283)" enable="true"/>
+                <variable type="Burger" type-java="Burger" name="burger12" value="new Burger()" value-java=" new Burger()" enable="true"/>
+                <call expression="addObject(burger12,86,77)" expression-java="addObject(burger12, 86, 77)" enable="true"/>
+                <variable type="Burger" type-java="Burger" name="burger13" value="new Burger()" value-java=" new Burger()" enable="true"/>
+                <call expression="addObject(burger13,452,624)" expression-java="addObject(burger13, 452, 624)" enable="true"/>
+                <call expression="burger6.setLocation(693,743)" expression-java="burger6.setLocation(693, 743)" enable="true"/>
+                <call expression="burger3.setLocation(-74,488)" expression-java="burger3.setLocation(-74, 488)" enable="true"/>
+                <call expression="burger3.setLocation(112,499)" expression-java="burger3.setLocation(112, 499)" enable="true"/>
+                <call expression="burger.setLocation(131,261)" expression-java="burger.setLocation(131, 261)" enable="true"/>
+                <call expression="burger11.setLocation(322,246)" expression-java="burger11.setLocation(322, 246)" enable="true"/>
+                <call expression="burger.setLocation(143,275)" expression-java="burger.setLocation(143, 275)" enable="true"/>
+            </body>
+        </method>
+    </methods>
 </class>

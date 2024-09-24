@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="Snake" extends="Actor" extends-java="Actor" enable="true" strideversion="1">
+    <javadoc xml:space="preserve"/>
+    <imports>
+        <import target="java.util.*" enable="true"/>
+        <import target="greenfoot.*" enable="true"/>
+    </imports>
+    <implements/>
+    <fields/>
+    <constructors>
+        <constructor access="public" enable="true">
+            <javadoc xml:space="preserve">Make the snake start at a random pointing position</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <call expression="turn(Greenfoot.getRandomNumber(360))" expression-java="turn(Greenfoot.getRandomNumber(360))" enable="true"/>
+            </body>
+        </constructor>
+    </constructors>
+    <methods>
+        <method access="public" type="void" type-java="void" name="act" enable="true">
+            <javadoc xml:space="preserve">Act - do whatever the Snake wants to do. This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <call expression="moveAround()" expression-java="moveAround()" enable="true"/>
+                <call expression="eat()" expression-java="eat()" enable="true"/>
+                <call expression="transformBurgerToSnake()" expression-java="transformBurgerToSnake()" enable="true"/>
+                <if condition="isGameLose()" condition-java="isGameLose()" enable="true">
+                    <ifStatements>
+                        <call expression="transitionToGameLoseWorld()" expression-java="transitionToGameLoseWorld()" enable="true"/>
+                    </ifStatements>
+                </if>
+                <blank/>
+            </body>
+        </method>
+        <method access="public" type="boolean" type-java="boolean" name="isGameLose" enable="true">
+            <javadoc xml:space="preserve">If the pig gets eaten then we lose</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <variable type="World" type-java="World" name="world" value="getWorld()" value-java="getWorld()" enable="true"/>
+                <if condition="world.getObjects(Pig.class).isEmpty()" condition-java="world.getObjects(Pig.class).isEmpty()" enable="true">
+                    <ifStatements>
+                        <return value="true" value-java="true" enable="true"/>
+                    </ifStatements>
+                    <else>
+                        <return value="false" value-java="false" enable="true"/>
+                    </else>
+                </if>
+            </body>
+        </method>
+        <method access="public" type="void" type-java="void" name="transitionToGameLoseWorld" enable="true">
+            <javadoc xml:space="preserve"/>
+            <params/>
+            <throws/>
+            <body>
+                <variable type="World" type-java="World" name="gameLoseWorld" value="new gameLoseWorld()" value-java=" new gameLoseWorld()" enable="true"/>
+                <call expression="Greenfoot.setWorld(gameLoseWorld)" expression-java="Greenfoot.setWorld(gameLoseWorld)" enable="true"/>
+                <call expression="Greenfoot.playSound(&quot;lose.wav&quot;)" expression-java="Greenfoot.playSound(&quot;lose.wav&quot;)" enable="true"/>
+            </body>
+        </method>
+        <method access="public" type="void" type-java="void" name="moveAround" enable="true">
+            <javadoc xml:space="preserve">Fonction to move the snake around</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <call expression="move(3)" expression-java="move(3)" enable="true"/>
+                <if condition="Greenfoot.getRandomNumber(10)==1" condition-java="Greenfoot.getRandomNumber(10) == 1" enable="true">
+                    <ifStatements>
+                        <call expression="turn(Greenfoot.getRandomNumber(90)-45)" expression-java="turn(Greenfoot.getRandomNumber(90) - 45)" enable="true"/>
+                    </ifStatements>
+                </if>
+                <if condition="isAtEdge()" condition-java="isAtEdge()" enable="true">
+                    <ifStatements>
+                        <call expression="turn(180)" expression-java="turn(180)" enable="true"/>
+                    </ifStatements>
+                </if>
+            </body>
+        </method>
+        <method access="public" type="void" type-java="void" name="eat" enable="true">
+            <javadoc xml:space="preserve">Fonction to eat the pig</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <variable type="Actor" type-java="Actor" name="pig" value="getOneIntersectingObject(Pig.class)" value-java="getOneIntersectingObject(Pig.class)" enable="true"/>
+                <if condition="pig!=null" condition-java="pig != null" enable="true">
+                    <ifStatements>
+                        <variable type="World" type-java="World" name="world" value="getWorld()" value-java="getWorld()" enable="true"/>
+                        <call expression="world.removeObject(pig)" expression-java="world.removeObject(pig)" enable="true"/>
+                    </ifStatements>
+                </if>
+            </body>
+        </method>
+        <method access="public" type="void" type-java="void" name="transformBurgerToSnake" enable="true">
+            <javadoc xml:space="preserve">Fonction to transfomr the burgers to snakes</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <variable type="Actor" type-java="Actor" name="burger" value="getOneIntersectingObject(Burger.class)" value-java="getOneIntersectingObject(Burger.class)" enable="true"/>
+                <if condition="burger!=null" condition-java="burger != null" enable="true">
+                    <ifStatements>
+                        <variable type="World" type-java="World" name="world" value="getWorld()" value-java="getWorld()" enable="true"/>
+                        <variable type="int" type-java="int" name="x" value="burger.getX()" value-java="burger.getX()" enable="true"/>
+                        <variable type="int" type-java="int" name="y" value="burger.getY()" value-java="burger.getY()" enable="true"/>
+                        <call expression="world.removeObject(burger)" expression-java="world.removeObject(burger)" enable="true"/>
+                        <variable type="Snake" type-java="Snake" name="snake" value="new Snake()" value-java=" new Snake()" enable="true"/>
+                        <call expression="world.addObject(snake,x,y)" expression-java="world.addObject(snake, x, y)" enable="true"/>
+                    </ifStatements>
+                </if>
+            </body>
+        </method>
+    </methods>
+</class>

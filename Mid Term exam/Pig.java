@@ -16,10 +16,37 @@ public class Pig extends Actor
     {
         moveAround();
         eat();
+        if (isGameWon()) {
+            transitionToGameWinWorld();
+        }
     }
 
     /**
-     * 
+     * If there is no more burgers left, we win
+     */
+    public boolean isGameWon()
+    {
+        World world = getWorld();
+        if (world.getObjects(Burger.class).isEmpty()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * If we win transition to winning screen
+     */
+    public void transitionToGameWinWorld()
+    {
+        World gameWinWorld =  new  gameWinWorld();
+        Greenfoot.setWorld(gameWinWorld);
+        Greenfoot.playSound("win.wav");
+    }
+
+    /**
+     * This is a fonction to move the pig around
      */
     public void moveAround()
     {
@@ -39,12 +66,15 @@ public class Pig extends Actor
     }
 
     /**
-     * 
+     * This is a fonction to eat the burgers
      */
     public void eat()
     {
-        Actor Pig;
-        if (0!=true) {
+        Actor burger = getOneIntersectingObject(Burger.class);
+        if (burger != null) {
+            World world = getWorld();
+            world.removeObject(burger);
+            Greenfoot.playSound("eating.wav");
         }
     }
 }
